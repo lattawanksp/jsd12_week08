@@ -7,14 +7,17 @@ export default function App() {
   const [answer, setAnswer] = useState("");
 
   const handleQuestion = (e) => {
-    //เขียน logic ที่ทำการเปลี่ยนค่าในตัวแปร question
     setQuestion(e.target.value);
+  };
+
+  const handleAnswer = (e) => {
+    setAnswer(e.target.value);
   };
 
   return (
     <div className="pb-80 py-10 gap-y-4 flex flex-col justify-center items-center min-h-screen bg-gray-200 text-black">
       <p className="text-purple-800">
-        Message for JSD12:
+        Message form Outside:
         <span className="text-yellow-800">
           {/*question or waiting for a massage*/}
           {question ? question : "Waiting for a message..."}
@@ -31,7 +34,7 @@ export default function App() {
         <span className="text-yellow-800"></span>
         {answer ? answer : "Waiting for a reply..."}
       </p>
-      <Castle question={question} answer={answer} setAnswer={setAnswer} />
+      <Castle question={question} answer={answer} handleAnswer={handleAnswer} />
     </div>
   );
 }
