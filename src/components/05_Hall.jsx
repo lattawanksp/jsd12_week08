@@ -1,0 +1,10 @@
+import Corridor from "./06_Corridor";
+
+export default function Hall({ question, answer, setAnswer }) {
+  return (
+    <div className="flex flex-col justify-center items-center pt-10 bg-yellow-300 w-[90%]">
+      <h1>Hall</h1>
+      <Corridor question={question} answer={answer} setAnswer={setAnswer} />
+    </div>
+  );
+}

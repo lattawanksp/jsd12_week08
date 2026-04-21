@@ -1,0 +1,10 @@
+import Hall from "./05_Hall";
+
+export default function Room({ question, answer, setAnswer }) {
+  return (
+    <div className="flex flex-col justify-center items-center pt-10 bg-green-300 w-[90%]">
+      <h1>Room</h1>
+      <Hall question={question} answer={answer} setAnswer={setAnswer} />
+    </div>
+  );
+}
