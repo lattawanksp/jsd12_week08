@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Castle from "./components/01_Castle";
+import SimpleAsyncAwait from "./examples/async/SimpleAsyncAwait";
+import SimpleProAsyncAwait from "./examples/async/SimpleProAsyncAwait";
 
 export default function App() {
   // creating state variable
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const showUsePower = answer.trim().toLowerCase() === "help";
 
   const handleQuestion = (e) => {
     setQuestion(e.target.value);
@@ -34,7 +37,15 @@ export default function App() {
         <span className="text-yellow-800"></span>
         {answer ? answer : "Waiting for a reply..."}
       </p>
+
+      {showUsePower && (
+        <button className="bg-amber-300 text-black px-4 py-2 rounded">
+          use power
+        </button>
+      )}
       <Castle question={question} answer={answer} handleAnswer={handleAnswer} />
+      <SimpleAsyncAwait />
+      <SimpleProAsyncAwait />
     </div>
   );
 }

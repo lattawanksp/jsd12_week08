@@ -2,7 +2,7 @@ import Corridor from "./06_Corridor";
 
 export default function Hall({ question, answer, handleAnswer }) {
   return (
-    <div className="flex flex-col justify-center items-center pt-10 bg-yellow-300 w-[90%]">
+    <div className="flex flex-col justify-center items-center pt-10 bg-amber-200 w-[90%]">
       <h1>Hall</h1>
       <Corridor
         question={question}
