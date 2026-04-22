@@ -17,6 +17,13 @@ export default function App() {
     setAnswer(e.target.value);
   };
 
+  const [clearLevel, setClearLevel] = useState(0);
+
+  //การเพิ่มเลเวลแบบมีเพดาน เปรียบเทียบเลข 2 ชุด แล้วเลือก "ตัวที่น้อยกว่า"
+  const handleUsePower = () => {
+    setClearLevel((prev) => Math.min(prev + 1, 9));
+  };
+
   return (
     <div className="pb-80 py-10 gap-y-4 flex flex-col justify-center items-center min-h-screen bg-gray-200 text-black">
       <p className="text-purple-800">
@@ -39,11 +46,19 @@ export default function App() {
       </p>
 
       {showUsePower && (
-        <button className="bg-amber-300 text-black px-4 py-2 rounded">
+        <button
+          onClick={handleUsePower}
+          className="bg-amber-300 text-black px-4 py-2 rounded"
+        >
           use power
         </button>
       )}
-      <Castle question={question} answer={answer} handleAnswer={handleAnswer} />
+      <Castle
+        question={question}
+        answer={answer}
+        handleAnswer={handleAnswer}
+        clearLevel={clearLevel}
+      />
       <SimpleAsyncAwait />
       <SimpleProAsyncAwait />
     </div>
