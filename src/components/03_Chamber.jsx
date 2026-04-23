@@ -1,11 +1,9 @@
+import { useContext } from "react";
 import Room from "./04_Room";
+import { MessageContext } from "../contexts/messageContext/MessageContext";
 
-export default function Chamber({
-  question,
-  answer,
-  handleAnswer,
-  clearLevel,
-}) {
+export default function Chamber() {
+  const { clearLevel } = useContext(MessageContext);
   const isCleared = clearLevel >= 3;
 
   return (
@@ -15,12 +13,7 @@ export default function Chamber({
       }`}
     >
       <h1>{isCleared ? "Clear" : "Chamber"}</h1>
-      <Room
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-        clearLevel={clearLevel}
-      />
+      <Room />
     </div>
   );
 }

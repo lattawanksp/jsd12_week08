@@ -1,11 +1,9 @@
+import { useContext } from "react";
 import Nook from "./08_Nook";
+import { MessageContext } from "../contexts/messageContext/MessageContext";
 
-export default function Gallery({
-  question,
-  answer,
-  handleAnswer,
-  clearLevel,
-}) {
+export default function Gallery() {
+  const { clearLevel } = useContext(MessageContext);
   const isCleared = clearLevel >= 7;
 
   return (
@@ -14,13 +12,8 @@ export default function Gallery({
         isCleared ? "bg-transparent" : "bg-red-300"
       }`}
     >
-      <h1>Gallery</h1>
-      <Nook
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-        clearLevel={clearLevel}
-      />
+      <h1>{isCleared ? "Clear" : "Gallery"}</h1>
+      <Nook />
     </div>
   );
 }

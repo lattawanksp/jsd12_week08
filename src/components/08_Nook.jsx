@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import SecretRoom from "./09_SecretRoom";
+import { MessageContext } from "../contexts/messageContext/MessageContext";
 
-export default function Nook({ question, answer, handleAnswer }) {
+export default function Nook() {
+  const { clearLevel } = useContext(MessageContext);
+  const isCleared = clearLevel >= 8;
+
   return (
-    <div className="flex flex-col justify-center items-center pt-10 bg-pink-300 w-[90%]">
-      <h1>Nook</h1>
-      <SecretRoom
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-      />
+    <div
+      className={`flex flex-col justify-center items-center pt-10 w-full ${
+        isCleared ? "bg-transparent" : "bg-pink-300"
+      }`}
+    >
+      <h1>{isCleared ? "Clear" : "Nook"}</h1>
+      <SecretRoom />
     </div>
   );
 }

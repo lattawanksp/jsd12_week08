@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import Chamber from "./03_Chamber";
+import { MessageContext } from "../contexts/messageContext/MessageContext";
 
-export default function Tower({ question, answer, handleAnswer, clearLevel }) {
+export default function Tower() {
+  const { clearLevel } = useContext(MessageContext);
   const isCleared = clearLevel >= 2;
 
   return (
@@ -10,13 +13,7 @@ export default function Tower({ question, answer, handleAnswer, clearLevel }) {
       }`}
     >
       <h1>{isCleared ? "Clear" : "Tower"}</h1>
-
-      <Chamber
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-        clearLevel={clearLevel}
-      />
+      <Chamber />
     </div>
   );
 }

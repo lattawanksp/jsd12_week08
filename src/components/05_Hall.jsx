@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import Corridor from "./06_Corridor";
+import { MessageContext } from "../contexts/messageContext/MessageContext";
 
-export default function Hall({ question, answer, handleAnswer, clearLevel }) {
+export default function Hall() {
+  const { clearLevel } = useContext(MessageContext);
   const isCleared = clearLevel >= 5;
 
   return (
@@ -10,12 +13,7 @@ export default function Hall({ question, answer, handleAnswer, clearLevel }) {
       }`}
     >
       <h1>{isCleared ? "Clear" : "Hall"}</h1>
-      <Corridor
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-        clearLevel={clearLevel}
-      />
+      <Corridor />
     </div>
   );
 }

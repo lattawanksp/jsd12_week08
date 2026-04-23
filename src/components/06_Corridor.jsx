@@ -1,11 +1,9 @@
+import { useContext } from "react";
 import Gallery from "./07_Gallery";
+import { MessageContext } from "../contexts/messageContext/MessageContext";
 
-export default function Corridor({
-  question,
-  answer,
-  handleAnswer,
-  clearLevel,
-}) {
+export default function Corridor() {
+  const { clearLevel } = useContext(MessageContext);
   const isCleared = clearLevel >= 6;
 
   return (
@@ -15,12 +13,7 @@ export default function Corridor({
       }`}
     >
       <h1>{isCleared ? "Clear" : "Corridor"}</h1>
-      <Gallery
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-        clearLevel={clearLevel}
-      />
+      <Gallery />
     </div>
   );
 }

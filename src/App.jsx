@@ -1,35 +1,19 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Castle from "./components/01_Castle";
-import SimpleAsyncAwait from "./examples/async/SimpleAsyncAwait";
-import SimpleProAsyncAwait from "./examples/async/SimpleProAsyncAwait";
+// import SimpleAsyncAwait from "./examples/async/SimpleAsyncAwait";
+// import SimpleProAsyncAwait from "./examples/async/SimpleProAsyncAwait";
+import { MessageContext } from "./contexts/messageContext/MessageContext";
 
 export default function App() {
-  // creating state variable
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const { question, answer, handleQuestion, handleUsePower } =
+    useContext(MessageContext);
   const showUsePower = answer.trim().toLowerCase() === "help";
-
-  const handleQuestion = (e) => {
-    setQuestion(e.target.value);
-  };
-
-  const handleAnswer = (e) => {
-    setAnswer(e.target.value);
-  };
-
-  const [clearLevel, setClearLevel] = useState(0);
-
-  //การเพิ่มเลเวลแบบมีเพดาน เปรียบเทียบเลข 2 ชุด แล้วเลือก "ตัวที่น้อยกว่า"
-  const handleUsePower = () => {
-    setClearLevel((prev) => Math.min(prev + 1, 9));
-  };
 
   return (
     <div className="pb-80 py-10 gap-y-4 flex flex-col justify-center items-center min-h-screen bg-gray-200 text-black">
       <p className="text-purple-800">
         Message form Outside:
         <span className="text-yellow-800">
-          {/*question or waiting for a massage*/}
           {question ? question : "Waiting for a message..."}
         </span>
       </p>
@@ -41,8 +25,9 @@ export default function App() {
       />
       <p className="text-green-800">
         Reply from Secret Room:
-        <span className="text-yellow-800"></span>
-        {answer ? answer : "Waiting for a reply..."}
+        <span className="text-yellow-800">
+          {answer ? answer : "Waiting for a reply..."}
+        </span>
       </p>
 
       {showUsePower && (
@@ -53,14 +38,10 @@ export default function App() {
           use power
         </button>
       )}
-      <Castle
-        question={question}
-        answer={answer}
-        handleAnswer={handleAnswer}
-        clearLevel={clearLevel}
-      />
-      <SimpleAsyncAwait />
-      <SimpleProAsyncAwait />
+
+      <Castle />
+      {/* <SimpleAsyncAwait />
+      <SimpleProAsyncAwait /> */}
     </div>
   );
 }
